@@ -1,16 +1,15 @@
 package br.com.lfmelo;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class) //para usar as notações do Mock
+@ExtendWith(MockitoExtension.class) //para usar as notações do Mock
 public class MockitoTestes {
 
     @Mock
@@ -24,5 +23,8 @@ public class MockitoTestes {
 
         Assertions.assertThat(tamanhoLista).isEqualTo(20);
 
+        Mockito.verify(lista).size(); //valida se realmente chamou o método que precisa ser validada.
+
+        //Mockito.verify(lista, Mockito.times(1)).size(); //verifica quantas vezes chamou o método.
     }
 }

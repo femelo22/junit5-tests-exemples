@@ -1,22 +1,20 @@
 package br.com.lfmelo;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class PrimeiroTeste {
 
     Calculadora calculadora;
 
-    @Before
+    @BeforeEach
     public void criarCalc() {
         calculadora = new Calculadora();
     }
 
     @Test
     public void deveSomarDoisNumeros() {
-        //cenario
-//        Calculadora calculadora = new Calculadora();
         int numero1 = 10, numero2 = 5;
 
         //execucao
@@ -27,13 +25,14 @@ public class PrimeiroTeste {
     }
 
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void naoDeveSomarNumerosNegativos(){
         //cenario
         int numero1 = -10, numero2 = 5;
 
         //execucao
-        calculadora.somar(numero1, numero2);
+        org.junit.jupiter.api.Assertions
+                .assertThrows( RuntimeException.class, () -> calculadora.somar(numero1, numero2));
     }
 
     @Test
@@ -57,11 +56,12 @@ public class PrimeiroTeste {
         Assertions.assertThat(resultado).isEqualTo(5);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void naoDeveDividirNumeroPorZero() {
         int num1 = 10, num2 = 0;
 
-        calculadora.dividir(num1, num2);
+        org.junit.jupiter.api.Assertions
+                .assertThrows( RuntimeException.class, () -> calculadora.dividir(num1, num2));
     }
 
     @Test
